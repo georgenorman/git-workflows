@@ -29,15 +29,16 @@ createStarterRepo
 
 
 # =================================
-h2 "Create the release branch, from the master branch (containing only the README)"
+h2 "Create the release branch, for the 'R-1.0.0' stream (containing only the README)"
 # =================================
 
 # Branch is created, HEAD remains at master
-cmd "git branch 'R-1.0.0-SNAPSHOT'"  "Create the 'R-1.0.0-SNAPSHOT' branch for the 'R-1.0.0' stream"
+cmd "git branch 'R-1.0.0-SNAPSHOT'"  "Create the 'R-1.0.0-SNAPSHOT' branch from the master branch"
 
-cmd "git status"
+cmd "git branch"  "List all branches"
 
 # =================================
+# @-@:p0 TODO: Make separate "feature" branches for all features in this sprint (and merge back into R-1.0.0-SNAPSHOT)
 h2 "First Sprint: Generate some project files, add them to the index (aka staging area) and commit them to the development branch"
 # =================================
 
@@ -57,12 +58,13 @@ cmd "git add test1.txt  myDir/test2.txt"  "Add files to staging area"
 cmd "git status --short" "Check status (files should now be staged and ready for commit)"
 
 # Commit files (in the staging area) to the repo.
-cmd "git commit -m 'Initial commit for DBWF-001 feature [Lorem Ipsum and friends]'" "Commit the staged changes to the repo"
+cmd "git commit -m 'Initial commit for RSWF-001 feature [Lorem Ipsum and friends]'" "Commit the staged changes to the repo"
 
 # Check status.
 cmd "git status"  "Check status (all changes have been addressed - working directory should now be clean)"
 
 # =================================
+# @-@:p0 TODO: Make separate "feature" branches for all features in this sprint (and merge back into R-1.0.0-SNAPSHOT)
 h2 "Second Sprint: Implement enhancements, then add them to the staging area and commit them to the master branch"
 # =================================
 
@@ -82,7 +84,7 @@ cmd "git add --all test1.txt  testOne.txt  myDir/test2.txt"  "Add changes to sta
 cmd "git status --short"  "Check status (files should now be staged and ready for commit)"
 
 # Commit changes (that are in the staging area) to the repo.
-cmd "git commit -m 'Implement DBWF-003 enhancement [Verbiage changes to cutomer facing text files]'" "Commit the staged changes to the repo (master branch)"
+cmd "git commit -m 'Implement RSWF-003 enhancement [Verbiage changes to cutomer facing text files]'" "Commit the staged changes to the repo (master branch)"
 
 # View commit logs.
 cmd "git log --oneline"  "View commit logs"
@@ -98,7 +100,7 @@ h2 "Code complete: Create the release canidate branch (R-1.0.0-RC001) from the '
 
 cmd "git branch 'R-1.0.0-RC001'"  "Create the 'R-1.0.0-RC001' branch from 'R-1.0.0-SNAPSHOT'"
 
-cmd "git status"
+cmd "git branch"  "List all branches"
 
 
 
@@ -109,6 +111,7 @@ h2 "Fix QA issue(s)"
 # Develop on the 'R-1.0.0-RC001' branch
 cmd "git checkout 'R-1.0.0-RC001'"  "Develop on the 'R-1.0.0-RC001' branch"
 
+# @-@:p0 TODO: Make separate "bugfix" branches for all fixes of this cycle (and merge back into R-1.0.0-RC001)
 # Apply QA_FIX_1 to the project files
 applyQAFix1ToProject
 
@@ -125,7 +128,7 @@ cmd "git add testOne.txt"  "Add changes to staging area"
 cmd "git status --short"  "Check status"
 
 # Commit changes (that are in the staging area) to the repo.
-cmd "git commit -m 'Fix DBWF-005 issue [verbiage needed another update]'" "Commit the staged changes to the repo"
+cmd "git commit -m 'Fix RSWF-005 issue [another verbiage change]'" "Commit the staged changes to the repo"
 
 # View commit logs.
 cmd "git log --oneline"  "View commit logs"
@@ -141,7 +144,7 @@ h2 "Project Complete: Create the final release branch (R-1.0.0) from the release
 
 cmd "git branch 'R-1.0.0'"  "Create the final release branch (R-1.0.0)"
 
-cmd "git status"
+cmd "git branch"  "List all branches"
 
 cmd "git checkout 'R-1.0.0'"  "Tag the 'R-1.0.0' branch"
 
@@ -159,12 +162,13 @@ h2 "Fix production issue(s)"
 
 cmd "git branch 'R-1.0.1'"  "Create the patch release branch (R-1.0.1)"
 
-cmd "git status"
+cmd "git branch"  "List all branches"
 
 # Develop on the 'R-1.0.1' branch
 cmd "git checkout 'R-1.0.0-RC001'"  "Develop on the 'R-1.0.1' branch"
 
 
+# @-@:p0 TODO: Make separate "hotfix" branches for all fixes of this cycle (and merge back into R-1.0.1-SNAPSHOT/RC001)
 # Apply HOT_FIX_1 to the project files
 applyHotFix1ToProject
 
@@ -182,7 +186,7 @@ cmd "git status --short"  "Check status"
 
 
 # Commit changes (that are in the staging area) to the repo.
-cmd "git commit -m 'Fix DBWF-009 issue [verbiage needed yet another update]'" "Commit the staged changes to the repo"
+cmd "git commit -m 'Fix RSWF-009 issue [verbiage needed yet another update]'" "Commit the staged changes to the repo"
 
 
 # View commit logs.
